@@ -83,7 +83,7 @@ def escaneo_nmap(network):
         print(f"Error al ejecutar nmap en la red {network}: {e}")
         return []
 
-def proceso_paralelo(networks, max_threads=50):
+def proceso_paralelo(networks, max_threads=80):
     """Procesa redes en paralelo para reducir el tiempo de escaneo."""
     all_active_ips = []  # Lista para almacenar todas las IPs activas
     with ThreadPoolExecutor(max_threads) as executor:
@@ -101,11 +101,11 @@ with open(NETWORKS_FILE, "r") as networks_file:
     networks = [line.strip() for line in networks_file if line.strip()]
 
 # Escanear todas las redes en paralelo
-active_ips = proceso_paralelo(networks, max_threads=50)
+active_ips = proceso_paralelo(networks, max_threads=80)
 
 # Procesar las IPs activas obtenidas
 print("Obteniendo información con SNMP...")
-with ThreadPoolExecutor(max_workers=70) as executor:
+with ThreadPoolExecutor(max_workers=120) as executor:
     for ip in active_ips:
         executor.submit(procesar_snmp, ip, OUTPUT_FILE)
 
