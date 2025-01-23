@@ -1,0 +1,8 @@
+services:
+  scanner-prueba:
+    build: .
+    container_name: scan-prueba
+    volumes:
+      - .:/app
+
+
