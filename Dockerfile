@@ -31,5 +31,5 @@ WORKDIR /app
 
 # Comando para ejecutar el script principal
 #CMD ["tail", "-f", "/dev/null"]
-CMD ["python3", "principal.py"]
+CMD ["python3", "scan.py"]
 
